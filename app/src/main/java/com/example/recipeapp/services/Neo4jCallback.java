@@ -1,6 +1,7 @@
 package com.example.recipeapp.services;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -16,7 +17,8 @@ public abstract class Neo4jCallback<T> implements Callback<T> {
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        Toast.makeText(context, "Failed to connect", Toast.LENGTH_SHORT).show();
+        Log.e("Neo4jCallback", "Network call failed", t);
+        Toast.makeText(context, "Failed to connect: " + t.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

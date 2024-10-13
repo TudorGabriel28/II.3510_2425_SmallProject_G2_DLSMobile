@@ -13,7 +13,7 @@ public class Neo4jResponse {
     @Getter
     public static class Data {
         private List<String> fields;
-        private List<List<String>> values;
+        private List<List<Object>> values;
 
     }
 }

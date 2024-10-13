@@ -28,4 +28,15 @@
         android:name="com.example.recipeapp.ui.search.SearchFragment"
         android:label="@string/search"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_recipe_detail"
+        android:name="com.example.recipeapp.ui.recipe.RecipeDetailsFragment"
+        android:label="Recipe Details" />
+
+    <action
+        android:id="@+id/action_navigation_home_to_navigation_recipe_detail"
+        app:destination="@id/navigation_recipe_detail" />
+
+
 </navigation>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -11,7 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import com.example.recipeapp.R;
 import com.example.recipeapp.databinding.FragmentHomeBinding;
 import com.example.recipeapp.databinding.FragmentSearchBinding;
 import com.example.recipeapp.dtos.CypherQuery;
@@ -59,17 +63,21 @@ public class SearchFragment extends Fragment {
         });
 
 //        Set on item click listener
-        recipeListView.setOnItemClickListener((parent, view, position, id) -> {
-            RecipeListItem recipeListItem = (RecipeListItem) parent.getItemAtPosition(position);
-//            Toast.makeText(getContext(), recipeListItem.getName(), Toast.LENGTH_SHORT).show();
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected recipe
+                RecipeListItem recipeListItem = (RecipeListItem) parent.getItemAtPosition(position);
 
-            // Create an Intent to start RecipeDetailActivity
-//            Intent intent = new Intent(getContext(), RecipeDetailActivity.class);
-//
-//            // Pass recipe details to the RecipeDetailActivity
-//            intent.putExtra("recipeName", selectedRecipe.getName());
-//            intent.putExtra("recipeCategory", selectedRecipe.getCategory());
-//            startActivity(intent);
+                // Use NavController to navigate to RecipeDetailFragment
+                Bundle bundle = new Bundle();
+                bundle.putString("recipeName", recipeListItem.getName());
+                bundle.putString("recipeAuthor", recipeListItem.getAuthor());
+
+                // Navigate to the detail fragment
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
+                navController.navigate(R.id.action_navigation_home_to_navigation_recipe_detail, bundle);
+            }
         });
 
         return root;
@@ -85,11 +93,11 @@ public class SearchFragment extends Fragment {
         service.runCypherQuery(cypherQuery).enqueue(new Neo4jCallback<>(getContext()) {
             @Override
             public void handleSuccess(Neo4jResponse result) {
-                List<List<String>> values = result.getData().getValues();
+                List<List<Object>> values = result.getData().getValues();
                 if (!values.isEmpty()) {
                     List<RecipeListItem> recipeListItems = new ArrayList<>();
-                    for (List<String> value : values) {
-                        recipeListItems.add(new RecipeListItem(value.get(0), value.get(1)));
+                    for (List<Object> value : values) {
+                        recipeListItems.add(new RecipeListItem(value.get(0).toString(), value.get(1).toString()));
                     }
                     updateSearchList(recipeListItems);
                 } else {
