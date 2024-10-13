@@ -24,8 +24,11 @@ import com.example.recipeapp.services.Neo4jApiService;
 import com.example.recipeapp.services.Neo4jCallback;
 import com.example.recipeapp.services.Neo4jService;
 import com.example.recipeapp.ui.home.HomeViewModel;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SearchFragment extends Fragment {
@@ -34,6 +37,8 @@ public class SearchFragment extends Fragment {
     private SearchView searchView;
     private ListView recipeListView;
     private SearchRecipeAdapter searchRecipeAdapter;
+//    private List<String> selectedIngredients = new ArrayList<>();
+//    private ChipGroup ingredientChipGroup;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -80,8 +85,39 @@ public class SearchFragment extends Fragment {
             }
         });
 
+
+//        recipeListView = binding.recipeListView;
+//        ingredientChipGroup = binding.ingredientChipGroup;
+//
+//        List<String> ingredients = getIngredientsList();  // Load ingredients from your data source
+//        addIngredientsToChipGroup(ingredients);
+
         return root;
     }
+
+//    private List<String> getIngredientsList() {
+//        // Mock data or load from your Neo4j or local database
+//        return Arrays.asList("Tomato", "Cheese", "Garlic", "Onion", "Chicken", "Basil", "Pepper", "Salt");
+//    }
+
+//    private void addIngredientsToChipGroup(List<String> ingredients) {
+//        for (String ingredient : ingredients) {
+//            Chip chip = (Chip) LayoutInflater.from(getContext()).inflate(R.layout.chip_item, ingredientChipGroup, false);
+//            chip.setText(ingredient);
+//            chip.setCheckable(true);
+//
+//            // Handle chip selection
+//            chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//                if (isChecked) {
+//                    selectedIngredients.add(ingredient);
+//                } else {
+//                    selectedIngredients.remove(ingredient);
+//                }
+//            });
+//
+//            ingredientChipGroup.addView(chip);
+//        }
+//    }
 
     private void searchRecipeByName(String recipeName) {
         Neo4jApiService service = Neo4jService.getInstance();

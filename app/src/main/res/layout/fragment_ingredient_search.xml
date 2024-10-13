@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.search.IngredientSearchFragment">
+
+    <!-- Searchable Ingredient Input -->
+    <LinearLayout
+        android:id="@+id/ingredientSearchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredientSearchInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Type to search for ingredients..."
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="Search"/>
+    </LinearLayout>
+
+    <!-- Chip Group for Selected Ingredients -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/selectedIngredientsChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ingredientSearchLayout"
+        android:layout_margin="16dp"
+        android:orientation="horizontal"
+        app:singleLine="false"/>
+
+    <!-- Recipe List View -->
+    <ListView
+        android:id="@+id/recipeListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectedIngredientsChipGroup"/>
+
+</RelativeLayout>

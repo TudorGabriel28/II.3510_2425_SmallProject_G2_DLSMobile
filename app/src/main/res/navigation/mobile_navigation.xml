@@ -38,5 +38,15 @@
         android:id="@+id/action_navigation_home_to_navigation_recipe_detail"
         app:destination="@id/navigation_recipe_detail" />
 
+    <fragment
+        android:id="@+id/navigation_ingredient_search"
+        android:name="com.example.recipeapp.ui.search.IngredientSearchFragment"
+        android:label="Ingredient Search"
+        tools:layout="@layout/fragment_ingredient_search" />
+
+    <action
+        android:id="@+id/action_navigation_search_to_navigation_ingredient_search"
+        app:destination="@id/navigation_ingredient_search" />
+
 
 </navigation>
