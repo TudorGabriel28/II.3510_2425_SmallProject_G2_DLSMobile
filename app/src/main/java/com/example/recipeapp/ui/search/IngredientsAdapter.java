@@ -1,4 +1,4 @@
-package com.example.recipeapp.ui.home;
+package com.example.recipeapp.ui.search;
 
 import android.view.LayoutInflater;
 import android.view.View;
