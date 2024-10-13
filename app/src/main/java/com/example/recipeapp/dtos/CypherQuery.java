@@ -1,9 +1,10 @@
 package com.example.recipeapp.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter @Setter
 public class CypherQuery {

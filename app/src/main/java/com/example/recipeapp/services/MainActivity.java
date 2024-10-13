@@ -1,9 +1,10 @@
-package com.example.recipeapp;
+package com.example.recipeapp.services;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.recipeapp.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -48,14 +49,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-
-//        Neo4jService neo4jService = Neo4jService.getInstance();
-//        neo4jService.verifyConnection();
-
-//        String query = "MATCH (r:Recipe) RETURN r.name AS name, r.cooking_time AS cooking_time";
-//        neo4jService.runQuery(query, Map.of());
     }
 
     @Override
