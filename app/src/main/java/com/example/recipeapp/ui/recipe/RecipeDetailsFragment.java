@@ -77,7 +77,7 @@ public class RecipeDetailsFragment extends Fragment {
 "                          OPTIONAL MATCH (r)-[:DIET_TYPE]->(d: DietType)\n" +
 "                          RETURN r.id AS Id, r.name AS Name, r.description AS Description, r.preparationTime AS PreparationTime, \n" +
 "                                        r.cookingTime AS CookingTime, r.skillLevel AS SkillLevel, collect(DISTINCT i.name) AS Ingredients,\n" +
-"                                        collect(DISTINCT c.name) AS Collections, collect(DISTINCT d) AS DietTypes";
+"                                        collect(DISTINCT c.name) AS Collections, collect(DISTINCT d.name) AS DietTypes";
 
         CypherQuery cypherQuery = new CypherQuery(query);
         cypherQuery.addParameter("name", recipeName);
