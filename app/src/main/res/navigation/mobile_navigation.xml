@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/navigation_ingredient_search"
-        android:name="com.example.recipeapp.ui.search.IngredientSearchFragment"
+        android:name="com.example.recipeapp.ui.search.by_ingredients.IngredientSearchFragment"
         android:label="Ingredient Search"
         tools:layout="@layout/fragment_ingredient_search" />
 

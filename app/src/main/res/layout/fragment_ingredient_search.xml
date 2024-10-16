@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.search.IngredientSearchFragment">
+    tools:context=".ui.search.by_ingredients.IngredientSearchFragment">
 
     <!-- Searchable Ingredient Input -->
     <LinearLayout
