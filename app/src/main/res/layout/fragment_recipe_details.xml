@@ -1,140 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:padding="16dp"
-android:background="@color/white">
 
-<!-- Recipe Title -->
-<TextView
-    android:id="@+id/recipeTitleTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Recipe Name"
-    android:textSize="24sp"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    android:layout_gravity="center_horizontal"
-    android:paddingBottom="16dp" />
-
-
-    <TextView
-        android:id="@+id/recipeAuthorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Author: John Doe"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:paddingBottom="16dp" />
-<!-- Preparation and Cooking Times -->
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:paddingBottom="16dp">
-
-    <TextView
-        android:id="@+id/recipePreparationTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Prep Time: 30 mins"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="|"
-        android:textSize="16sp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:textColor="@color/design_default_color_surface" />
-
-    <TextView
-        android:id="@+id/recipeCookingTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cook Time: 20 mins"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
-</LinearLayout>
-
-<!-- Skill Level -->
-<TextView
-    android:id="@+id/recipeSkillLevelTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Skill Level: Easy"
-    android:textSize="16sp"
-    android:textColor="@color/black"
-    android:paddingBottom="16dp" />
-
-<!-- Recipe Description -->
-<TextView
-    android:id="@+id/recipeDescriptionTextView"
+<ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="A delicious and healthy couscous salad with mozzarella and fresh tomatoes."
-    android:textSize="16sp"
-    android:textColor="@color/black"
-    android:paddingBottom="16dp" />
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!-- Ingredients Section -->
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Ingredients"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    android:paddingBottom="8dp" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/white"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-<TextView
-    android:id="@+id/recipeIngredientsTextView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="• Mozzarella\n• Tomatoes\n• Couscous"
-    android:textSize="16sp"
-    android:textColor="@color/black"
-    android:paddingBottom="16dp" />
+        <!-- Recipe Title -->
+        <TextView
+            android:id="@+id/recipeTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipe Name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp" />
 
-<!-- Collections Section -->
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Collections"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    android:paddingBottom="8dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Author: "
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:paddingEnd="8dp" />
+            <TextView
+                android:id="@+id/recipeAuthorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="John Doe"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
 
-<TextView
-    android:id="@+id/recipeCollectionsTextView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="• Summer Recipes"
-    android:textSize="16sp"
-    android:textColor="@color/black"
-    android:paddingBottom="16dp" />
+        <!-- Preparation and Cooking Times -->
 
-<!-- Diet Types Section -->
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Diet Types"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    android:paddingBottom="8dp" />
 
-<TextView
-    android:id="@+id/recipeDietTypesTextView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="• Vegetarian"
-    android:textSize="16sp"
-    android:textColor="@color/black" />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prep Time: "
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:paddingEnd="8dp" />
+                <TextView
+                    android:id="@+id/recipePreparationTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30 mins"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|"
+                android:textSize="16sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/design_default_color_surface" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cook Time: "
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:paddingEnd="8dp" />
+                <TextView
+                    android:id="@+id/recipeCookingTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20 mins"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Skill Level -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skill Level: "
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:paddingEnd="8dp" />
+            <TextView
+                android:id="@+id/recipeSkillLevelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Easy"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingBottom="16dp" />
+
+        </LinearLayout>
+
+        <!-- Recipe Description -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingEnd="8dp" />
+        <TextView
+            android:id="@+id/recipeDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A delicious and healthy couscous salad with mozzarella and fresh tomatoes."
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingBottom="16dp" />
+
+        <!-- Ingredients Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingredients"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp" />
+
+        <!-- Chip Group for Selected Ingredients -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/selectedIngredientsChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            app:singleLine="false"/>
+
+
+        <!-- Collections Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Collections"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/recipeCollectionsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Summer Recipes"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingBottom="16dp" />
+
+        <!-- Diet Types Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diet Types"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/recipeDietTypesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Vegetarian"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</ScrollView>
+

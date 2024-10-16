@@ -1,9 +1,10 @@
-package com.example.recipeapp.ui.search;
+package com.example.recipeapp.ui.search.by_ingredients;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.recipeapp.R;
 import com.example.recipeapp.dtos.CypherQuery;
@@ -19,11 +22,12 @@ import com.example.recipeapp.dtos.Neo4jResponse;
 import com.example.recipeapp.services.Neo4jApiService;
 import com.example.recipeapp.services.Neo4jCallback;
 import com.example.recipeapp.services.Neo4jService;
+import com.example.recipeapp.ui.search.RecipeListItem;
+import com.example.recipeapp.ui.search.SearchRecipeAdapter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class IngredientSearchFragment extends Fragment {
@@ -74,6 +78,20 @@ public class IngredientSearchFragment extends Fragment {
             }
         });
 
+        recipeListView.setOnItemClickListener((parent, view, position, id) -> {
+            // Get the selected recipe
+            RecipeListItem recipeListItem = (RecipeListItem) parent.getItemAtPosition(position);
+
+            // Use NavController to navigate to RecipeDetailFragment
+            Bundle bundle = new Bundle();
+            bundle.putString("recipeName", recipeListItem.getName());
+            bundle.putString("recipeAuthor", recipeListItem.getAuthor());
+
+            // Navigate to the detail fragment
+            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
+            navController.navigate(R.id.action_navigation_home_to_navigation_recipe_detail, bundle);
+        });
+
         return root;
     }
 
@@ -92,8 +110,27 @@ public class IngredientSearchFragment extends Fragment {
 
     // Method to fetch ingredients (this can be an API call to get the ingredients from the database)
     private List<String> fetchAllIngredients() {
-        // Placeholder for demo; replace with actual data
-        return Arrays.asList("Tomato", "Mozzarella", "Basil", "Garlic", "Olive Oil", "Salt", "Pepper", "egg");
+        Neo4jApiService service = Neo4jService.getInstance();
+        String query = "MATCH (i:Ingredient) RETURN i.name AS name";
+
+        CypherQuery cypherQuery = new CypherQuery(query);
+        List<String> ingredients = new ArrayList<>();
+
+        service.runCypherQuery(cypherQuery).enqueue(new Neo4jCallback<>(getContext()) {
+            @Override
+            public void handleSuccess(Neo4jResponse result) {
+                List<List<Object>> values = result.getData().getValues();
+                if (!values.isEmpty()) {
+                    for (List<Object> value : values) {
+                        ingredients.add(value.get(0).toString());
+                    }
+                } else {
+                    Toast.makeText(getContext(), "No recipes found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return ingredients;
     }
 
     // Method to search for recipes by selected ingredients
