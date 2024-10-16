@@ -92,8 +92,27 @@ public class IngredientSearchFragment extends Fragment {
 
     // Method to fetch ingredients (this can be an API call to get the ingredients from the database)
     private List<String> fetchAllIngredients() {
-        // Placeholder for demo; replace with actual data
-        return Arrays.asList("Tomato", "Mozzarella", "Basil", "Garlic", "Olive Oil", "Salt", "Pepper", "egg");
+        Neo4jApiService service = Neo4jService.getInstance();
+        String query = "MATCH (i:Ingredient) RETURN i.name AS name";
+
+        CypherQuery cypherQuery = new CypherQuery(query);
+        List<String> ingredients = new ArrayList<>();
+
+        service.runCypherQuery(cypherQuery).enqueue(new Neo4jCallback<>(getContext()) {
+            @Override
+            public void handleSuccess(Neo4jResponse result) {
+                List<List<Object>> values = result.getData().getValues();
+                if (!values.isEmpty()) {
+                    for (List<Object> value : values) {
+                        ingredients.add(value.get(0).toString());
+                    }
+                } else {
+                    Toast.makeText(getContext(), "No recipes found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return ingredients;
     }
 
     // Method to search for recipes by selected ingredients
