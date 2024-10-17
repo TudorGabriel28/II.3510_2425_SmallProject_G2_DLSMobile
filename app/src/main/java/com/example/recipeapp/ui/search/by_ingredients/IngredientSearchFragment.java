@@ -1,10 +1,10 @@
 package com.example.recipeapp.ui.search.by_ingredients;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -23,7 +23,7 @@ import com.example.recipeapp.services.Neo4jApiService;
 import com.example.recipeapp.services.Neo4jCallback;
 import com.example.recipeapp.services.Neo4jService;
 import com.example.recipeapp.ui.search.RecipeListItem;
-import com.example.recipeapp.ui.search.SearchRecipeAdapter;
+import com.example.recipeapp.ui.search.RecipeListAdapter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -35,7 +35,7 @@ public class IngredientSearchFragment extends Fragment {
     private ChipGroup selectedIngredientsChipGroup;
     private ListView recipeListView;
     private Button searchButton;
-    private SearchRecipeAdapter searchRecipeAdapter;
+    private RecipeListAdapter recipeListAdapter;
 
     private List<String> ingredientsList = new ArrayList<>(); // Your list of ingredients
     private List<String> selectedIngredients = new ArrayList<>(); // List of selected ingredients
@@ -88,11 +88,18 @@ public class IngredientSearchFragment extends Fragment {
             bundle.putString("recipeAuthor", recipeListItem.getAuthor());
 
             // Navigate to the detail fragment
-            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
+            NavController navController = Navigation.findNavController(view);
             navController.navigate(R.id.action_navigation_home_to_navigation_recipe_detail, bundle);
         });
 
         return root;
+    }
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
     // Method to add the chip to the ChipGroup
@@ -162,14 +169,8 @@ public class IngredientSearchFragment extends Fragment {
     }
 
     private void updateSearchList(List<RecipeListItem> recipeListItems) {
-        if (searchRecipeAdapter == null) {
-            searchRecipeAdapter = new SearchRecipeAdapter(getContext(), recipeListItems);
-            recipeListView.setAdapter(searchRecipeAdapter);
-        } else {
-            searchRecipeAdapter.notifyDataSetChanged();
-        }
-
-
+        recipeListAdapter = new RecipeListAdapter(getContext(), recipeListItems);
+        recipeListView.setAdapter(recipeListAdapter);
     }
 }
 

@@ -215,6 +215,15 @@
             android:text="• Vegetarian"
             android:textSize="16sp"
             android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/favorites_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove from Favorites"
+            android:layout_gravity="end"
+            android:layout_marginRight="3dp"
+            />
     </LinearLayout>
 </ScrollView>
 

@@ -11,9 +11,9 @@ import com.example.recipeapp.R;
 
 import java.util.List;
 
-public class SearchRecipeAdapter extends ArrayAdapter<RecipeListItem> {
+public class RecipeListAdapter extends ArrayAdapter<RecipeListItem> {
 
-    public SearchRecipeAdapter(Context context, List<RecipeListItem> recipes) {
+    public RecipeListAdapter(Context context, List<RecipeListItem> recipes) {
         super(context, 0, recipes);
     }
 
