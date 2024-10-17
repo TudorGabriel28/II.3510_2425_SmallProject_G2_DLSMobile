@@ -146,7 +146,10 @@ public class IngredientSearchFragment extends Fragment {
         Neo4jApiService service = Neo4jService.getInstance();
         String query = "MATCH (a:Author)-[:WROTE]->(r:Recipe)-[:CONTAINS_INGREDIENT]->(i:Ingredient) " +
                 "WHERE i.name IN $ingredients " +
-                "RETURN r.name AS name, a.name AS author LIMIT 10";
+                "WITH r.name AS name, a.name AS author, COLLECT(i.name) AS ingredients, COUNT(i) AS ingredientCount " +
+                "WHERE ALL(ingredient IN $ingredients WHERE ingredient IN ingredients) " +
+                "ORDER BY ingredientCount ASC " +
+                "RETURN name, author LIMIT 100";
 
         CypherQuery cypherQuery = new CypherQuery(query);
         cypherQuery.addParameter("ingredients", ingredients);

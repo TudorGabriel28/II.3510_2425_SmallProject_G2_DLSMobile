@@ -46,6 +46,7 @@ public class SearchFragment extends Fragment {
         // Initialize UI components
         searchView = binding.searchView;
         recipeListView = binding.recipeListView;
+        updateEmptySearchLayoutVisibility(true);
 
         // Set search query listener
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -78,6 +79,8 @@ public class SearchFragment extends Fragment {
 
         });
 
+
+
         return root;
     }
 
@@ -92,9 +95,20 @@ public class SearchFragment extends Fragment {
     }
 
 
+    private void updateEmptySearchLayoutVisibility(boolean isEmpty) {
+        if (isEmpty) {
+            binding.emptySearchLayout.setVisibility(View.VISIBLE);
+            binding.recipeListView.setVisibility(View.GONE);
+        } else {
+            binding.emptySearchLayout.setVisibility(View.GONE);
+            binding.recipeListView.setVisibility(View.VISIBLE);
+        }
+    }
+
+
     private void searchRecipeByName(String recipeName) {
         Neo4jApiService service = Neo4jService.getInstance();
-        String query = "MATCH (r:Recipe)<-[:WROTE]-(a:Author) WHERE r.name CONTAINS $name RETURN r.name AS name, a.name AS author LIMIT 10";
+        String query = "MATCH (r:Recipe)<-[:WROTE]-(a:Author) WHERE r.name CONTAINS $name RETURN r.name AS name, a.name AS author LIMIT 100";
 
         CypherQuery cypherQuery = new CypherQuery(query);
         cypherQuery.addParameter("name", recipeName);
@@ -109,6 +123,7 @@ public class SearchFragment extends Fragment {
                         recipeListItems.add(new RecipeListItem(value.get(0).toString(), value.get(1).toString()));
                     }
 
+                    updateEmptySearchLayoutVisibility(recipeListItems.isEmpty());
                     updateSearchList(recipeListItems);
                 } else {
                     Toast.makeText(getContext(), "No recipe found", Toast.LENGTH_SHORT).show();

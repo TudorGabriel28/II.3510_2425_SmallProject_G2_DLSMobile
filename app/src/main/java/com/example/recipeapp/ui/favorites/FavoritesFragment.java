@@ -67,6 +67,17 @@ public class FavoritesFragment extends Fragment {
     private void updateFavoritesListView(List<RecipeListItem> recipeListItems) {
         recipeListAdapter = new RecipeListAdapter(getContext(), recipeListItems);
         binding.recipeListView.setAdapter(recipeListAdapter);
+        updateEmptyFavoritesLayoutVisibility(recipeListItems.isEmpty());
+    }
+
+    private void updateEmptyFavoritesLayoutVisibility(boolean isEmpty) {
+        if (isEmpty) {
+            binding.emptyFavoritesLayout.setVisibility(View.VISIBLE);
+            binding.recipeListView.setVisibility(View.GONE);
+        } else {
+            binding.emptyFavoritesLayout.setVisibility(View.GONE);
+            binding.recipeListView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
