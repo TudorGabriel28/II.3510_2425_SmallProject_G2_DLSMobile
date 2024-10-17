@@ -22,5 +22,28 @@
         android:id="@+id/recipeListView"
         android:layout_below="@id/searchView"/>
 
+    <LinearLayout
+        android:id="@+id/emptySearchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="198dp"
+            android:layout_height="206dp"
+            android:src="@drawable/empty_search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search for your next meal!"
+            android:textColor="@color/material_on_surface_emphasis_medium"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 
 </RelativeLayout>

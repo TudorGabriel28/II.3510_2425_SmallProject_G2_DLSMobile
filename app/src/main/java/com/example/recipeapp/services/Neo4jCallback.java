@@ -19,6 +19,7 @@ public abstract class Neo4jCallback<T> implements Callback<T> {
     public void onFailure(Call<T> call, Throwable t) {
         Log.e("Neo4jCallback", "Network call failed", t);
         Toast.makeText(context, "Failed to connect: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+        throw new RuntimeException(t);
     }
 
     @Override
@@ -27,6 +28,7 @@ public abstract class Neo4jCallback<T> implements Callback<T> {
             handleSuccess(response.body());
         } else {
             Toast.makeText(context, "Error fetching data", Toast.LENGTH_SHORT).show();
+            throw new RuntimeException("Error fetching data");
         }
     }
 

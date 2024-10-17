@@ -34,6 +34,8 @@ android {
     }
 }
 
+val room_version = "2.5.0"
+
 dependencies {
 
     implementation(libs.appcompat)
@@ -52,4 +54,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.34")
     annotationProcessor("org.projectlombok:lombok:1.18.34")
     implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
 }
