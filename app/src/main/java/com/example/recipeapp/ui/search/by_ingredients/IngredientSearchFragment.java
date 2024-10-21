@@ -176,4 +176,3 @@ public class IngredientSearchFragment extends Fragment {
         recipeListView.setAdapter(recipeListAdapter);
     }
 }
-

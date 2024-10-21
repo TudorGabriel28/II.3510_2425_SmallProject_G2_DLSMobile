@@ -208,6 +208,26 @@
             android:textColor="@color/black"
             android:paddingBottom="8dp" />
 
+
+        <!-- Title for Recipe Rating -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipe Rating"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp" />
+
+        <!-- Add this section in your LinearLayout in fragment_recipe_details.xml -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="0" /> <!-- Set default rating to 0 -->
+
         <TextView
             android:id="@+id/recipeDietTypesTextView"
             android:layout_width="match_parent"
@@ -224,6 +244,15 @@
             android:layout_gravity="end"
             android:layout_marginRight="3dp"
             />
+
+        <Button
+            android:id="@+id/shareRecipeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share Recipe"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp" />
+
     </LinearLayout>
 </ScrollView>
 

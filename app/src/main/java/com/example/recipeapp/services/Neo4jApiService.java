@@ -17,4 +17,11 @@ public interface Neo4jApiService {
     @POST("db/neo4j/query/v2")
     Call<Neo4jResponse> runCypherQuery(@Body CypherQuery query);
 
+    // New method for fetching similar recipes
+    @POST("db/neo4j/query/v2")
+    Call<Neo4jResponse> fetchSimilarRecipes(@Body CypherQuery query);
+
+    @POST("db/neo4j/query/v2")
+    Call<Neo4jResponse> fetchCollections(@Body CypherQuery query);
+
 }

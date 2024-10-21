@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.recipeapp.entities.Recipe;
 
-@Database(entities = {Recipe.class}, version = 1)
+@Database(entities = {Recipe.class}, version = 1, exportSchema = true) // or false
 public abstract class RecipeDatabase extends RoomDatabase {
     public abstract RecipeDao recipeDao();
 }

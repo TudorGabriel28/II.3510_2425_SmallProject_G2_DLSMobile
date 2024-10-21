@@ -20,7 +20,12 @@ public interface RecipeDao {
     @Query("SELECT * FROM recipes WHERE id = :recipeId")
     Recipe getRecipeById(int recipeId);
 
-
     @Query("DELETE FROM recipes WHERE id = :recipeId")
     void deleteRecipe(int recipeId);
+
+    @Query("UPDATE recipes SET rating = :rating WHERE id = :recipeId")
+    void updateRecipeRating(int recipeId, float rating);
+
+    @Query("SELECT rating FROM recipes WHERE id = :recipeId")
+    float getRecipeRating(int recipeId);
 }
