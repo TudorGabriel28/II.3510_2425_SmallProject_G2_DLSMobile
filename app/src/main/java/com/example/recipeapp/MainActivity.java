@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private MenuItem searchByIngredientsButton;
+    private Neo4jService neo4jService; // Instance pour interagir avec Neo4j
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        neo4jService = new Neo4jService(); // Initialisation de Neo4jService pour charger les données
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -40,8 +43,18 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        loadHomeData(); // Charger les données pour la page d'accueil
 
     }
+
+    private void loadHomeData(){
+        neo4jService.getCategories(new Neo4jCallback<List<String>>() {
+            @Override
+            public void onSuccess(List<String> categories) {
+
+            }
+
+        }
 
     private void showMenuBtnOnlyOnSearchFragment(NavController navController) {
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {

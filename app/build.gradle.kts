@@ -56,5 +56,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
+ //   implementation 'org.neo4j.driver:neo4j-java-driver:4.4.0'
+
 
 }

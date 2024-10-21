@@ -15,6 +15,7 @@ import com.example.recipeapp.databinding.FragmentProfileBinding;
 public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
+    private ProfileViewModel profileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,8 +25,18 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        // Observer pour le nom d'utilisateur
+        profileViewModel.getUserName().observe(getViewLifecycleOwner(), binding.textUserName::setText);
+
+        // Observer pour l'email d'utilisateur
+        profileViewModel.getUserEmail().observe(getViewLifecycleOwner(), binding.textUserEmail::setText);
+
+        // Observer pour les allergies de l'utilisateur
+        profileViewModel.getUserAllergies().observe(getViewLifecycleOwner(), binding.textUserAllergies::setText);
+
+        profileViewModel.loadUserData("email@example.com"); // Remplace par l'email de l'utilisateur
+
+
         return root;
     }
 
