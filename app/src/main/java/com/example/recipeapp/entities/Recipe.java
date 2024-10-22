@@ -3,12 +3,15 @@ package com.example.recipeapp.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter @AllArgsConstructor
+@Getter
+@Setter 
+@NoArgsConstructor 
+@AllArgsConstructor
 @Entity(tableName = "recipes")
 public class Recipe {
 
@@ -23,5 +26,10 @@ public class Recipe {
     private String ingredients;
     private String collections;
     private String dietTypes;
+    private float rating; 
 
+    
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 }

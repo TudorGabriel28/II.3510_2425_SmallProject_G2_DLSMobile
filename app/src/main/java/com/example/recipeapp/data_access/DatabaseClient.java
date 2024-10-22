@@ -16,7 +16,7 @@ public class DatabaseClient {
     private DatabaseClient(Context context) {
         this.context = context;
 
-        // Creating the RecipeDatabase with Room
+        
         recipeDatabase = Room.databaseBuilder(context, RecipeDatabase.class, "RecipeDB").build();
     }
 

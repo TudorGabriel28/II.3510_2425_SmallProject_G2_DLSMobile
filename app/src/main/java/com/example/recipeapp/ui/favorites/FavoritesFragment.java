@@ -40,22 +40,22 @@ public class FavoritesFragment extends Fragment {
             for (Recipe recipe : recipes) {
                 recipeListItems.add(new RecipeListItem(recipe.getName(), recipe.getAuthor()));
             }
-            // Update the UI on the main thread
+            
             getActivity().runOnUiThread(() -> {
                 updateFavoritesListView(recipeListItems);
             });
         }).start();
 
         binding.recipeListView.setOnItemClickListener((parent, view, position, id) -> {
-            // Get the selected recipe
+            
             RecipeListItem recipeListItem = (RecipeListItem) parent.getItemAtPosition(position);
 
-            // Use NavController to navigate to RecipeDetailFragment
+            
             Bundle bundle = new Bundle();
             bundle.putString("recipeName", recipeListItem.getName());
             bundle.putString("recipeAuthor", recipeListItem.getAuthor());
 
-            // Navigate to the detail fragment
+            
             NavController navController = Navigation.findNavController(view);
             navController.navigate(R.id.action_navigation_home_to_navigation_recipe_detail, bundle);
 
