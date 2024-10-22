@@ -37,8 +37,8 @@ public class IngredientSearchFragment extends Fragment {
     private Button searchButton;
     private RecipeListAdapter recipeListAdapter;
 
-    private List<String> ingredientsList = new ArrayList<>(); // Your list of ingredients
-    private List<String> selectedIngredients = new ArrayList<>(); // List of selected ingredients
+    private List<String> ingredientsList = new ArrayList<>(); 
+    private List<String> selectedIngredients = new ArrayList<>(); 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,27 +49,27 @@ public class IngredientSearchFragment extends Fragment {
         recipeListView = root.findViewById(R.id.recipeListView);
         searchButton = root.findViewById(R.id.searchButton);
 
-        // Assuming you have a list of ingredients fetched from the database
+        
         ingredientsList = fetchAllIngredients();
 
-        // Setup the AutoCompleteTextView adapter
+        
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, ingredientsList);
         ingredientSearchInput.setAdapter(adapter);
 
-        // Handle ingredient selection
+        
         ingredientSearchInput.setOnItemClickListener((parent, view, position, id) -> {
             String selectedIngredient = (String) parent.getItemAtPosition(position);
 
             if (!selectedIngredients.contains(selectedIngredient)) {
                 selectedIngredients.add(selectedIngredient);
-                addChip(selectedIngredient); // Create chip for selected ingredient
+                addChip(selectedIngredient); 
             }
 
-            // Clear input after selection
+            
             ingredientSearchInput.setText("");
         });
 
-        // Search button click event
+        
         searchButton.setOnClickListener(v -> {
             if (selectedIngredients.isEmpty()) {
                 Toast.makeText(getContext(), "Please select at least one ingredient", Toast.LENGTH_SHORT).show();
@@ -79,15 +79,15 @@ public class IngredientSearchFragment extends Fragment {
         });
 
         recipeListView.setOnItemClickListener((parent, view, position, id) -> {
-            // Get the selected recipe
+            
             RecipeListItem recipeListItem = (RecipeListItem) parent.getItemAtPosition(position);
 
-            // Use NavController to navigate to RecipeDetailFragment
+            
             Bundle bundle = new Bundle();
             bundle.putString("recipeName", recipeListItem.getName());
             bundle.putString("recipeAuthor", recipeListItem.getAuthor());
 
-            // Navigate to the detail fragment
+            
             NavController navController = Navigation.findNavController(view);
             navController.navigate(R.id.action_navigation_home_to_navigation_recipe_detail, bundle);
         });
@@ -102,11 +102,11 @@ public class IngredientSearchFragment extends Fragment {
         super.onDestroyView();
     }
 
-    // Method to add the chip to the ChipGroup
+    
     private void addChip(String ingredient) {
         Chip chip = new Chip(getContext());
         chip.setText(ingredient);
-        chip.setCloseIconVisible(true); // To allow removal of chip
+        chip.setCloseIconVisible(true); 
         chip.setOnCloseIconClickListener(v -> {
             selectedIngredientsChipGroup.removeView(chip);
             selectedIngredients.remove(ingredient);
@@ -115,7 +115,7 @@ public class IngredientSearchFragment extends Fragment {
         selectedIngredientsChipGroup.addView(chip);
     }
 
-    // Method to fetch ingredients (this can be an API call to get the ingredients from the database)
+    
     private List<String> fetchAllIngredients() {
         Neo4jApiService service = Neo4jService.getInstance();
         String query = "MATCH (i:Ingredient) RETURN i.name AS name";
@@ -140,9 +140,9 @@ public class IngredientSearchFragment extends Fragment {
         return ingredients;
     }
 
-    // Method to search for recipes by selected ingredients
+    
     private void searchRecipesByIngredients(List<String> ingredients) {
-        // Construct your Neo4j query or any API call
+        
         Neo4jApiService service = Neo4jService.getInstance();
         String query = "MATCH (a:Author)-[:WROTE]->(r:Recipe)-[:CONTAINS_INGREDIENT]->(i:Ingredient) " +
                 "WHERE i.name IN $ingredients " +
@@ -163,7 +163,7 @@ public class IngredientSearchFragment extends Fragment {
                     for (List<Object> value : values) {
                         recipeListItems.add(new RecipeListItem(value.get(0).toString(), value.get(1).toString()));
                     }
-                    updateSearchList(recipeListItems); // Update the ListView with found recipes
+                    updateSearchList(recipeListItems); 
                 } else {
                     Toast.makeText(getContext(), "No recipes found", Toast.LENGTH_SHORT).show();
                 }

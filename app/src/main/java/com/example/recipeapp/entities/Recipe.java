@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter // Add this line to generate setters
-@NoArgsConstructor // Add this line to create a no-argument constructor
+@Setter 
+@NoArgsConstructor 
 @AllArgsConstructor
 @Entity(tableName = "recipes")
 public class Recipe {
@@ -26,9 +26,9 @@ public class Recipe {
     private String ingredients;
     private String collections;
     private String dietTypes;
-    private float rating; // Store the recipe rating
+    private float rating; 
 
-    // You might want to create setters if you need to update fields
+    
     public void setRating(float rating) {
         this.rating = rating;
     }
